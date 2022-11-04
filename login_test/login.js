@@ -37,7 +37,7 @@ function register() {
     username: usernameElement.value,
     email: emailElement.value,
     password: passwordElement.value,
-  };
+  }
 
   //   console.log(newUser);
   if (localStorage.getItem("userList") == null) {
@@ -114,33 +114,41 @@ function login() {
     return;
   }
 
+  const data = localStorage.getItem("userList");
   const usernameElement = document.getElementById("loginUsername");
   const passwordElement = document.getElementById("loginPassword");
 
-  // const newUser = {
-  //     username=
-  // };
-
   if (
-    usernameElement.value == newUser.username &&
-    passwordElement.value == newUser.password
+    data.includes(usernameElement.value) &&
+    data.includes(passwordElement.value)
   ) {
-    alert("Login Sucess!!");
-    // window.location.href("이동페이지");
+    alert("Login Sucess!");
+    // window.location.href("#");
+    return true;
+  }
+  if (!data.includes(usernameElement.value)) {
+    alert("Wrong username!");
+    usernameElement.focus();
+    return;
+  }
+  if (!data.includes(passwordElement.value)) {
+    alert("Wrong password!");
+    passwordElement.focus();
+    return;
   }
 }
 // 2. 로그인 내용 체크 함수 만들기
 function checkLoginFields() {
   const usernameElement = document.getElementById("loginUsername");
   const passwordElement = document.getElementById("loginPassword");
-
-  if (usernameElement == "") {
+  // username이 비어있으면 안됨
+  if (usernameElement.value == "") {
     alert("username을 입력해주세요.");
     usernameElement.focus();
     return false;
   }
-
-  if (passwordElement == "") {
+  // password가 비어있으면 안됨
+  if (passwordElement.value == "") {
     alert("password를 입력해주세요.");
     passwordElement.focus();
     return false;
