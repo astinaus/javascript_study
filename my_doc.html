@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>TODO List</h1>
+    <input id="data" onkeyup="enterData(event)" />
+
+    <ul id="container"></ul>
+  </body>
+  <script>
+    window.onload = () => {
+      setLiTag();
+    };
+
+    let array1 = ["복습하기", "예습하기", "운동하기"];
+    // 리스트 세팅
+    function setLiTag() {
+      const containerUl = window.document.getElementById("container");
+
+      while (containerUl.hasChildNodes()) {
+        containerUl.removeChild(containerUl.lastChild);
+      }
+
+      array1.forEach((value) => {
+        // const tempLi = document.createElement("li");
+
+        // const tempSpan = document.createComment("span");
+        // tempSpan.innerHTML = value;
+
+        // const tempSpan2 = document.createElement("span");
+        // tempSpan2.style.color = "red";
+        // tempSpan2.style.cursor = "pointer";
+        // tempSpan2.onclick = () => deleteItem(value);
+        // tempSpan2.innerHTML = " X";
+
+        // tempLi.appendChild(tempSpan);
+        // tempLi.appendChild(tempSpan2);
+
+        // containerUl.appendChild(tempLi);
+
+        containerUl.insertAdjacentHTML(
+          `beforeend`,
+          `<li>
+                    <span>${value}</span>
+                    <span style="color:red;cursor:pointer" onclick="deleteItem('${value}')"> X</span>
+
+                </li>`
+        );
+      });
+    }
+    // 아이템 추가 기능
+    function addItem(itemName) {
+      array1.push(itemName);
+
+      setLiTag();
+    }
+    // 아이템 삭제 기능
+    function deleteItem(itemName) {
+      const idx = array1.indexOf(itemName);
+
+      array1.splice(idx, 1);
+
+      setLiTag();
+    }
+    // 이벤트 세팅
+    function enterData(event) {
+      if (event.keyCode === 13) {
+        const dataInput = document.getElementById("data");
+
+        if (
+          dataInput.value != null &&
+          dataInput.value != "" &&
+          !array1.includes(dataInput.value)
+        ) {
+          addItem(dataInput.value);
+
+          dataInput.value = "";
+        } else {
+          dataInput.value = "";
+          alert(`이미 등록되어 있습니다.`);
+        }
+      }
+    }
+  </script>
+</html>

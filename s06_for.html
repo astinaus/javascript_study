@@ -10,11 +10,12 @@
 </body>
 <script>
 
-    var array1 = ['apple', 'tomato', 'banana'];
-    var object1 = {a: "apple", b: "tomato", c: "banana"}
+    var array1 = ['apple', 'banana', 'carrot'];
+    var object1 = {a: "apple", b: "banana", c: "carrot"}
 
     // for 문은 index를 증가 또는 감소 시키면서 반복함
     for (let index = 0; index < array1.length; index++) {
+        // 변수 선언  /      조건 선언        / 실행
         console.log(array1[index]);
     }
 
@@ -49,5 +50,8 @@
         }
     );
 
+    console.log(array1.filter((item) => item == 'apple'));
+    console.log(array1.map((item) => `${item} 입니다.`));
+    
 </script>
 </html>

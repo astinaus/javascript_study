@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-</body>
-<script>
-
+  </head>
+  <body></body>
+  <script>
     // 참조(레퍼런스) 데이터 타입
 
     // 객체
     var data1 = {
-        key1 : "value1",
-        key2 : function(){ 
-            console.log(`data1 - key3`);
-        },
-        key3 : {
-            subKey1 : `subKey`
-        } 
-    }
+      key1: "value1",
+      key2: function () {
+        console.log(`data1 - key3`);
+      },
+      key3: {
+        subKey1: `subKey`,
+      },
+    };
 
     // 객체 정보가 콘솔에 노출됨
     console.log(`data1`);
@@ -39,30 +37,28 @@
     console.log(`array1`);
     console.log(array1);
 
-    // 배열의 해당 번호의 요소가 콘솔에 노출됨 
+    // 배열의 해당 번호의 요소가 콘솔에 노출됨
     console.log(`array1[0] : ${array1[0]}`);
 
     // 함수 정의 1
     // 함수 선언문
-    function func1(value){
-        console.log(`func1 실행 : ${value}`);
+    function func1(value) {
+      console.log(`func1 실행 : ${value}`);
     }
 
     // 함수 정의 2 : 자바스크립트에서 함수는 객체로 인식되어 변수에 저장 할 수 있음
     // 함수 표현식
-    var func2 = function(value){
-        console.log(`func2 실행 : ${value}`);
-    }
+    var func2 = function (value) {
+      console.log(`func2 실행 : ${value}`);
+    };
 
     // 함수 정의 3 : arrow function (람다) 방식으로 함수를 정의할 수 있음
     var func3 = (value) => {
-        console.log(`func3 실행 : ${value}`);
-    }
+      console.log(`func3 실행 : ${value}`);
+    };
 
     func1("하이");
     func2(true);
     func3(null);
-    
-
-</script>
+  </script>
 </html>

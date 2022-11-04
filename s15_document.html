@@ -15,27 +15,31 @@
     </ul>
     
 </body>
-
-
 <script>
-
+    window.onload = () => {
+    // 기본 li 태그 실행
+    setLiTag();
+    }
+    
+    // Shift + F6 : 모두 바꾸기
     // 데이터
     let array1 = ['스터디 하기', '제로콜라 마시기', '이클립스 먹기'];
 
     function setLiTag() {
         // 태그를 가져옴
-        const containerDiv = window.document.getElementById("container");
+        const containerUl = window.document.getElementById("container");
 
         // 태그의 자식들을 삭제
-        while(containerDiv.hasChildNodes()){ //노란색 메서드 => 메서드란 >  객체안의 함수
-            containerDiv.removeChild(containerDiv.lastChild);
+        while(containerUl.hasChildNodes()){ 
+            //노란색 메서드 => 메서드란 >  객체안의 함수
+            containerUl.removeChild(containerUl.lastChild);
         }
 
         // 데이터 반복문    //배열안에 있는 기본속성값  foreach
         array1.forEach((value) => {
 
             // 자바스크립트로 태그를 만들어서 동적으로 입력
-            containerDiv.insertAdjacentHTML(
+            containerUl.insertAdjacentHTML(
                 `beforeend`, // beforebegin, afterbegin, beforeend, afterend
                 `<li>
                     <span>${value}</span>
@@ -85,13 +89,11 @@
                 dataInput.value = "";
 
             } else { // input 태그 value가 없거나 배열에 포함되어 있으면 alert창 띄우기
+                dataInput.value = "";
                 alert(`이미 등록되어 있습니다.`);
             }
         }
     }
-
-    // 기본 li 태그 실행
-    setLiTag();
 
 </script>
 </html>
