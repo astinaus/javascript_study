@@ -109,12 +109,13 @@ function checkJoinFields() {
 
 // 1. 로그인 버튼 함수 만들기
 function login() {
+  // 내용 체크
   const checkResult = checkLoginFields();
 
   if (!checkResult) {
     return;
   }
-
+  // 입력한 내용이 userList에 들어있는지 확인
   const userList = JSON.parse(localStorage.getItem("userList"));
   const usernameElement = document.getElementById("loginUsername");
   const passwordElement = document.getElementById("loginPassword");
@@ -126,6 +127,7 @@ function login() {
         tempUser.password === passwordElement.value
     )
   ) {
+    // username과 password가 모두 userList에 들어있으면 로그인 성공
     alert("Login Sucess!");
     window.location.href = "http://127.0.0.1:5581/login_test/login.html";
     return true;
@@ -134,6 +136,7 @@ function login() {
   if (
     !userList.find((tempUser) => tempUser.username === usernameElement.value)
   ) {
+    // username이 userList에 없으면 발생
     alert("Wrong username!");
     usernameElement.value = "";
     usernameElement.focus();
@@ -143,6 +146,7 @@ function login() {
   if (
     !userList.find((tempUser) => tempUser.password === passwordElement.value)
   ) {
+    // password가 userList에 없으면 발생
     alert("Wrong password!");
     passwordElement.value = "";
     passwordElement.focus();
@@ -165,33 +169,6 @@ function checkLoginFields() {
     passwordElement.focus();
     return false;
   }
-
+  // 통과하면 true를 리턴
   return true;
 }
-// 3. 로그인을 위한 유저리스트 체크 함수 만들기
-// function userListCheck() {
-//   const userList = JSON.parse(localStorage.getItem("userList"));
-//   const usernameElement = document.getElementById("loginUsername");
-//   const passwordElement = document.getElementById("loginPassword");
-
-//   if(userList.find(
-//     (tempUser) =>
-//       tempUser.username === usernameElement.value &&
-//       tempUser.password === passwordElement.value
-//   )) {
-//     alert("Login Sucess!");
-//     window.location.href("http://127.0.0.1:5581/login_test/login.html");
-//     return true;
-//   }
-
-//   if(!userList.find((tempUser) => tempUser.username === usernameElement.value)) {
-//     alert("Wrong username!");
-//     usernameElement.focus();
-//     return false;
-//   }
-
-//   if(!userList.find((tempUser) => tempUser.password === passwordElement.value)) {
-//     alert("Wrong password!");
-//     passwordElement.focus();
-//     return false;
-//   }
