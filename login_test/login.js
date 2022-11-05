@@ -120,6 +120,11 @@ function login() {
   const usernameElement = document.getElementById("loginUsername");
   const passwordElement = document.getElementById("loginPassword");
 
+  if(userList === null) {
+    alert("회원정보가 없습니다. 회원가입을 진행하세요.");
+
+    return;
+  }
   if (
     userList.find(
       (tempUser) =>
