@@ -1,99 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>TODO List</h1>
-    <input id="data" onkeyup="enterData(event)">
- 
-    <ul id="container">
-    
-    </ul>
-    
-</body>
-<script>
+    <input id="data" onkeyup="enterData(event)" />
+
+    <ul id="container"></ul>
+  </body>
+  <script>
     window.onload = () => {
-    // 기본 li 태그 실행
-    setLiTag();
-    }
-    
+      // 기본 li 태그 실행
+      setLiTag();
+    };
+
     // Shift + F6 : 모두 바꾸기
     // 데이터
-    let array1 = ['스터디 하기', '제로콜라 마시기', '이클립스 먹기'];
-
+    const array1 = ["스터디 하기", "제로콜라 마시기", "이클립스 먹기"];
+    // 원시 데이터 타입은 const로 선언하면 바꿀 수 없지만 배열이나 리스트 같은 레퍼런스 형태의 타입은
+    // 그 자체를 바꿀 순 없어도 내용은 추가하거나 삭제할 수 있다.
     function setLiTag() {
-        // 태그를 가져옴
-        const containerUl = window.document.getElementById("container");
+      // 태그를 가져옴
+      const containerUl = window.document.getElementById("container");
 
-        // 태그의 자식들을 삭제
-        while(containerUl.hasChildNodes()){ 
-            //노란색 메서드 => 메서드란 >  객체안의 함수
-            containerUl.removeChild(containerUl.lastChild);
-        }
+      // 태그의 자식들을 삭제
+      while (containerUl.hasChildNodes()) {
+        //노란색 메서드 => 메서드란 >  객체안의 함수
+        containerUl.removeChild(containerUl.lastChild);
+      }
 
-        // 데이터 반복문    //배열안에 있는 기본속성값  foreach
-        array1.forEach((value) => {
-
-            // 자바스크립트로 태그를 만들어서 동적으로 입력
-            containerUl.insertAdjacentHTML(
-                `beforeend`, // beforebegin, afterbegin, beforeend, afterend
-                `<li>
+      // 데이터 반복문    //배열안에 있는 기본속성값  foreach
+      array1.forEach((value) => {
+        // 자바스크립트로 태그를 만들어서 동적으로 입력
+        containerUl.insertAdjacentHTML(
+          // 백틱(`)
+          `beforeend`, // beforebegin, afterbegin, beforeend, afterend
+          `<li>
                     <span>${value}</span>
                     <span style="color:red;cursor:pointer" onclick="deleteItem('${value}')"> X</span>
                     
                 </li>`
-            );
-
-        });
+        );
+      });
     }
 
     // 아이템 추가 로직
     function addItem(itemName) {
-        //배열에 데이터 넣기
-        array1.push(itemName);
+      //배열에 데이터 넣기
+      array1.push(itemName);
 
-        // li 태그 추가 함수 실행
-        setLiTag();
+      // li 태그 추가 함수 실행
+      setLiTag();
     }
 
     // 아이템 삭제 로직
     function deleteItem(itemName) {
-        // 배열에서 아이템 이름을 검색해서 위치 파악
-        const idx = array1.indexOf(itemName);
+      // 배열에서 아이템 이름을 검색해서 위치 파악
+      const idx = array1.indexOf(itemName);
 
-        // 배열에서 해당 위치의 데이터 삭제
-        array1.splice(idx, 1);
+      // 배열에서 해당 위치의 데이터 삭제
+      array1.splice(idx, 1);
 
-        // li 태그 추가 함수 실행
-        setLiTag();
+      // li 태그 추가 함수 실행
+      setLiTag();
     }
-    
+
     function enterData(event) {
-        // 이벤트에서 엔터키일 경우 작동
-        if (event.keyCode === 13) {
-            // input 태그 가져오기
-            const dataInput = document.getElementById("data");
-            if( 
-                (dataInput.value != null && dataInput.value != "") &&
-                !array1.includes(dataInput.value)
-             ){
+      // 이벤트에서 엔터키일 경우 작동
+      if (event.keyCode === 13) {
+        // input 태그 가져오기
+        const dataInput = document.getElementById("data");
+        if (
+          dataInput.value != null &&
+          dataInput.value != "" &&
+          !array1.includes(dataInput.value)
+        ) {
+          // 데이터 추가 함수 실행
+          addItem(dataInput.value);
 
-                // 데이터 추가 함수 실행
-                addItem(dataInput.value);
-
-                // input 태그 value 초기화 //>> 엔터를 치고 그 후 인풋창에 없어져야 됨
-                dataInput.value = "";
-
-            } else { // input 태그 value가 없거나 배열에 포함되어 있으면 alert창 띄우기
-                dataInput.value = "";
-                alert(`이미 등록되어 있습니다.`);
-            }
+          // input 태그 value 초기화 //>> 엔터를 치고 그 후 인풋창에 없어져야 됨
+          dataInput.value = "";
+        } else {
+          // input 태그 value가 없거나 배열에 포함되어 있으면 alert창 띄우기
+          dataInput.value = "";
+          alert(`이미 등록되어 있습니다.`);
         }
+      }
     }
-
-</script>
+  </script>
 </html>
