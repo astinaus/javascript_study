@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const obj = {
+      name: "이름",
+      age: 5,
+    };
+
+    localStorage.setItem("name", JSON.stringify(obj));
+
+    const tempObj = JSON.parse(localStorage.getItem("name"));
+
+    console.log(tempObj);
+    console.log(typeof tempObj);
+  </script>
+</html>
