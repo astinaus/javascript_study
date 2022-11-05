@@ -121,8 +121,8 @@ function login() {
   const passwordElement = document.getElementById("loginPassword");
 
   if(userList === null) {
+    // userList에 없는 정보인지 확인
     alert("회원정보가 없습니다. 회원가입을 진행하세요.");
-
     return;
   }
   if (
