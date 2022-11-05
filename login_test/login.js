@@ -32,12 +32,13 @@ function register() {
   const usernameElement = document.getElementById("username");
   const emailElement = document.getElementById("email");
   const passwordElement = document.getElementById("password");
+  const confirmPasswordElement = document.getElementById("confirm-password");
 
   const newUser = {
     username: usernameElement.value,
     email: emailElement.value,
     password: passwordElement.value,
-  }
+  };
 
   //   console.log(newUser);
   if (localStorage.getItem("userList") == null) {
@@ -53,7 +54,7 @@ function register() {
   // 회원가입 완료 메시지
   alert("Register Sucess!");
   // 페이지 이동
-  // window.location.href = "이동페이지";
+  window.location.href = "http://127.0.0.1:5581/login_test/login.html";
 }
 
 // 2. 회원가입 내용 체크 함수 만들기
@@ -114,27 +115,38 @@ function login() {
     return;
   }
 
-  const data = localStorage.getItem("userList");
+  const userList = JSON.parse(localStorage.getItem("userList"));
   const usernameElement = document.getElementById("loginUsername");
   const passwordElement = document.getElementById("loginPassword");
 
   if (
-    data.includes(usernameElement.value) &&
-    data.includes(passwordElement.value)
+    userList.find(
+      (tempUser) =>
+        tempUser.username === usernameElement.value &&
+        tempUser.password === passwordElement.value
+    )
   ) {
     alert("Login Sucess!");
-    // window.location.href("#");
+    window.location.href = "http://127.0.0.1:5581/login_test/login.html";
     return true;
   }
-  if (!data.includes(usernameElement.value)) {
+
+  if (
+    !userList.find((tempUser) => tempUser.username === usernameElement.value)
+  ) {
     alert("Wrong username!");
+    usernameElement.value = "";
     usernameElement.focus();
-    return;
+    return false;
   }
-  if (!data.includes(passwordElement.value)) {
+
+  if (
+    !userList.find((tempUser) => tempUser.password === passwordElement.value)
+  ) {
     alert("Wrong password!");
+    passwordElement.value = "";
     passwordElement.focus();
-    return;
+    return false;
   }
 }
 // 2. 로그인 내용 체크 함수 만들기
@@ -156,3 +168,30 @@ function checkLoginFields() {
 
   return true;
 }
+// 3. 로그인을 위한 유저리스트 체크 함수 만들기
+// function userListCheck() {
+//   const userList = JSON.parse(localStorage.getItem("userList"));
+//   const usernameElement = document.getElementById("loginUsername");
+//   const passwordElement = document.getElementById("loginPassword");
+
+//   if(userList.find(
+//     (tempUser) =>
+//       tempUser.username === usernameElement.value &&
+//       tempUser.password === passwordElement.value
+//   )) {
+//     alert("Login Sucess!");
+//     window.location.href("http://127.0.0.1:5581/login_test/login.html");
+//     return true;
+//   }
+
+//   if(!userList.find((tempUser) => tempUser.username === usernameElement.value)) {
+//     alert("Wrong username!");
+//     usernameElement.focus();
+//     return false;
+//   }
+
+//   if(!userList.find((tempUser) => tempUser.password === passwordElement.value)) {
+//     alert("Wrong password!");
+//     passwordElement.focus();
+//     return false;
+//   }
